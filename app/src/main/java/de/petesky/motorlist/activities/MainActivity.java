@@ -56,14 +56,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
             e.printStackTrace();
         }
 
-        String message = getString(R.string.alert_info, versionCode, versionName);
-        String title = getString(R.string.title_info);
         new MaterialDialog.Builder(MainActivity.this)
                 .theme(Theme.LIGHT)
                 .iconRes(R.mipmap.ic_launcher_round)
-                .title(title)
-                .content(message)
-                .positiveText("OK")
+                .title(getString(R.string.title_info))
+                .content(getString(R.string.alert_info, versionCode, versionName))
+                .positiveText(android.R.string.ok)
                 .show();
     }
 
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
                         .theme(Theme.LIGHT)
                         .title(model.getAkz())
                         .content(model.getDetail())
-                        .positiveText("OK")
+                        .positiveText(android.R.string.ok)
                         .show();
             }
         });
@@ -107,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
         final MenuItem searchItem = menu.findItem(R.id.action_search);
-        final MenuItem infoItem = menu.findItem(R.id.info);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(this);
 
