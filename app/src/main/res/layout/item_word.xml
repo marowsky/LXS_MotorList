@@ -22,14 +22,6 @@
         android:onClick="@{view -> listener.onExampleModelClicked(model)}">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@{`#` + model.getRank()}"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"

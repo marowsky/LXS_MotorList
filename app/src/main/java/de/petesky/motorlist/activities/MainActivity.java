@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
     private ExampleAdapter mAdapter;
     private ActivityMainBinding mBinding;
     private Animator mAnimator;
-
     private List<WordModel> mModels;
 
     @Override
@@ -55,17 +53,12 @@ public class MainActivity extends AppCompatActivity implements SearchView.OnQuer
         mAdapter = new ExampleAdapter(this, COMPARATOR, new ExampleAdapter.Listener() {
             @Override
             public void onExampleModelClicked(WordModel model) {
-                //final String message = getString(R.string.model_clicked_pattern, model.getRank(), model.getAkz());
-                //Snackbar.make(mBinding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
-
                 new MaterialDialog.Builder(MainActivity.this)
                         .theme(Theme.LIGHT)
                         .title(model.getAkz())
                         .content(model.getDetail())
                         .positiveText("OK")
                         .show();
-
-
             }
         });
 
