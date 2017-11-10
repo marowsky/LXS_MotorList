@@ -12,7 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/primary"
-            app:title="@string/title"/>
+            android:theme="@android:style/ThemeOverlay.Material.Dark.ActionBar"
+            app:title="@string/title" />
 
         <FrameLayout
             android:layout_width="match_parent"
