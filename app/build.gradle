@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
+
+final travisVersionCode = (System.getenv('TRAVIS_BUILD_NUMBER') ?: 1) as int
+final travisVersionName = "0.1.0.${travisVersionCode}"
+final travisKeystorePassword = System.getenv('KEYSTORE_PASSWORD') ?: ''
+final travisKeyAlias = System.getenv('KEY_ALIAS') ?: ''
+final travisKeyPassword = System.getenv('KEY_PASSWORD') ?: ''
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    dataBinding {
+        enabled true
+    }
+    defaultConfig {
+        applicationId 'de.petesky.motorlist'
+        minSdkVersion 14
+        targetSdkVersion 26
+        versionCode 1
+        versionName '0.9'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+    lintOptions {
+        disable 'NewApi'
+    }
+    signingConfigs {
+        release {
+            storeFile rootProject.file('release.jks')
+            storePassword travisKeystorePassword
+            keyAlias travisKeyAlias
+            keyPassword travisKeyPassword
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    api 'com.android.support:appcompat-v7:26.1.0'
+    api 'com.android.support:recyclerview-v7:26.1.0'
+    api 'com.android.support:design:26.1.0'
+    api 'com.github.wrdlbrnft:sorted-list-adapter:0.3.0.25'
+    compile 'com.simplecityapps:recyclerview-fastscroll:1.0.16'
+    compile 'com.afollestad.material-dialogs:core:0.9.5.0'
+    compile 'com.afollestad.material-dialogs:commons:0.9.5.0'
+}
+
+play {
+    track = 'beta'
+    jsonFile = rootProject.file('keys.json')
+}
